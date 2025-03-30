@@ -1,5 +1,4 @@
 name: DreamTeam CI
-
 on:
   push:
     branches: [ "staging" ]
