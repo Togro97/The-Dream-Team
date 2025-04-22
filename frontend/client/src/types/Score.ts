@@ -1,20 +1,20 @@
 export type Score = {
-    score: number,
-    motivation: number
-}
+  score: number;
+  motivation: number;
+};
 
 export type ScoreRequest = {
-    studentId: number,
-    Score: number,
-    motivation: number
-}
+  studentId: number;
+  Score: number;
+  motivation: number;
+};
 
 export type ProjectScore = {
-    projectId: number,
-    scores: ScoreRequest[]
-}
+  projectId: number;
+  scores: ScoreRequest[];
+};
 
 export type ProjectTeam = {
-    projectId: number,
-    team: ScoreRequest[]
-}
+  projectId: number;
+  team: ScoreRequest[];
+};
