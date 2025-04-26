@@ -38,7 +38,7 @@ try:
 except Exception as e:
     print(f"Error: {e}")
 
-"""
+
 #Test with builder import
 
 builder = get_team_builder("dreamteam_builder")
@@ -53,11 +53,8 @@ if teams is not None:
     #print(json.dumps(teams['project_failure_reasons'], indent=4))
 else:
     print(f"NO TEAMS, teams = {teams}")
-"""
 
-"""
 
-"""
 """
     Team compositions
     {
@@ -67,13 +64,4 @@ else:
         "all_teams": valid_teams  #All valid teams
     }
 
-"""
-
-"""
-def build_team(project_id: Optional[int] = None,
-               team_size:int = 4,
-               applicant_data:str="clean_v4", 
-               score_data:str="stacking_model_scores", 
-               motivation_score:str="stacking_model_moti_scores", 
-               save_name:str="dream_team_example") -> dict:
 """
