@@ -168,6 +168,11 @@ def dream_team(
             status_code=200,
             content=dream_team
         )
+    except ValueError as ve:
+        return JSONResponse(
+            status_code=422,  # Unprocessable Entity
+            content={"detail": str(ve)}
+    )
     except Exception as e:
         return JSONResponse(
             status_code=500,

@@ -88,7 +88,7 @@ def build_team(project_id: Optional[int] = None,
         suggested_teams = suggest_teams_for_all_projects(data)
 
         if suggested_teams is None:
-                raise ValueError("No suggested teams something went wrong.")
+                raise ValueError("No suggested teams, something went wrong.")
             
 
         project_ids_with_teams = {team["projectId"] for team in suggested_teams['teams']}
@@ -131,8 +131,11 @@ def build_team(project_id: Optional[int] = None,
 
         return suggested_teams
     
+    except ValueError:
+        raise
+
     except Exception as e:
-        print(f"Error occured, {e}")
+        print(f"Unexpected error occured, {e}")
         return None
 
 def merge_project_data(applicants, scores, moti_scores):
@@ -287,6 +290,9 @@ def suggest_teams_for_project(project_applicants,
     
         return team_suggestions
     
+    except ValueError:
+        raise
+
     except Exception as e:
         print(f"Error occured, {e}")
         return None
