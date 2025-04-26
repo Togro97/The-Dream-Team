@@ -15,7 +15,7 @@ def build_team(
     saveFile: str = Query(default="APIteam", description="Name of the file team is saved")
 ):
     """
-    Builds the team based on stored predictions/scores
+    Builds the BASELINE TEAM based on stored predictions/scores
 
      Args:
         projectId (int): id for project
