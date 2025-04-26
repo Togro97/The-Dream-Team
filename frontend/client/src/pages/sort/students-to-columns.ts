@@ -1,5 +1,9 @@
 /* Types */
-import { Student, StudentWithColumn, StudentWithLocation } from "../../types/Student";
+import {
+  Student,
+  StudentWithColumn,
+  StudentWithLocation,
+} from "../../types/Student";
 import { Project } from "../../types/Project";
 import { AuthToken } from "../../types/Auth";
 
@@ -17,19 +21,32 @@ const createRowAdder = () => {
   };
 };
 
-export const addInitialStudentLocations = (projectId: Project["id"], students: Student[]): StudentWithLocation[] => {
-    return students.map(student => { return { student, column: getStudentLocation(projectId, student.id) } })
-                   .map(createRowAdder())
-}
+export const addInitialStudentLocations = (
+  projectId: Project["id"],
+  students: Student[],
+): StudentWithLocation[] => {
+  return students
+    .map((student) => {
+      return { student, column: getStudentLocation(projectId, student.id) };
+    })
+    .map(createRowAdder());
+};
 
-export const addStudentLocationsViaML = async (projectId: Project["id"], students: Student[], token: AuthToken): Promise<StudentWithLocation[]> => {
-    if (!token) throw new Error("No token in when getting project team!");
+export const addStudentLocationsViaML = async (
+  projectId: Project["id"],
+  students: Student[],
+  token: AuthToken,
+): Promise<StudentWithLocation[]> => {
+  if (!token) throw new Error("No token in when getting project team!");
 
-    const team = await getTeam(projectId, token);
-    const addLocation = (student: Student): ColumnType => {
-        const val = team.team.filter(score => score.studentId === student.id);
-        return val.length > 0 ? ColumnType.Selected : ColumnType.Applied;
-    };
-    return students.map(student => { return { student, column: addLocation(student) } })
-                   .map(createRowAdder())
-}
+  const team = await getTeam(projectId, token);
+  const addLocation = (student: Student): ColumnType => {
+    const val = team.team.filter((score) => score.studentId === student.id);
+    return val.length > 0 ? ColumnType.Selected : ColumnType.Applied;
+  };
+  return students
+    .map((student) => {
+      return { student, column: addLocation(student) };
+    })
+    .map(createRowAdder());
+};
